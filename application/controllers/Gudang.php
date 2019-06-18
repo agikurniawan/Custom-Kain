@@ -75,6 +75,8 @@ class Gudang extends CI_Controller{
       $nama_barang  = $this->input->post('nama_barang',TRUE);
       $satuan       = $this->input->post('satuan',TRUE);
       $jumlah       = $this->input->post('jumlah',TRUE);
+      $harga        = $this->input->post('harga',TRUE);
+      $img        = $this->input->post('img',TRUE);
 
       $data = array(
             'id_transaksi' => $id_transaksi,
@@ -83,7 +85,9 @@ class Gudang extends CI_Controller{
             'kode_barang'  => $kode_barang,
             'nama_barang'  => $nama_barang,
             'satuan'       => $satuan,
-            'jumlah'       => $jumlah
+            'jumlah'       => $jumlah,
+            'harga'        => $harga,
+            'img'        => $img
       );
       $this->M_gudang->insert('tb_barang_masuk',$data);
 
@@ -353,6 +357,28 @@ class Gudang extends CI_Controller{
     $this->M_gudang->delete('tb_barang_masuk_k',$where);
     redirect(base_url('gudang/tabel_pesanan'));
   }
+
+
+  // Tambah Gambar Kain
+    public function tambah(){
+		$data = array();
+		
+		if($this->input->post('submit')){ // Jika user menekan tombol Submit (Simpan) pada form
+			// lakukan upload file dengan memanggil function upload yang ada di GambarModel.php
+			$upload = $this->M_gudang->upload();
+			
+			if($upload['result'] == "success"){ // Jika proses upload sukses
+				 // Panggil function save yang ada di GambarModel.php untuk menyimpan data ke database
+				$this->M_gudang->save($upload);
+				
+				redirect('gudang/form_barangmasuk/form_insert'); // Redirect kembali ke halaman awal / halaman view data
+			}else{ // Jika proses upload gagal
+				$data['message'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+			}
+		}
+		
+		$this->load->view('gudang/form_barangmasuk/form_insert',$data);
+	}
 
 }
 ?>

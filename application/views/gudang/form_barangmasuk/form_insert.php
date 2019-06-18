@@ -289,9 +289,20 @@
                     <?php } ?>
                   </select>
               </div>
+              
               <div class="form-group" style="display:inline-block;">
                 <label for="jumlah" style="width:73%;margin-left:33px;">Jumlah</label>
                 <input type="number" name="jumlah" style="width:41%;margin-left:34px;margin-right:18px;" class="form-control" id="jumlah">
+            </div>
+            
+            <br>
+            <div class="form-group" style="display:inline-block;">
+                  <label for="harga" style="width:87%;margin-left: 12px;">Harga</label>
+                  <input type="text" name="harga" style="width: 90%;margin-right: 67px;margin-left: 11px;" class="form-control" id="kode_barang" placeholder="Harga">
+                </div>
+            <div class="form-group" style="display:inline-block;">
+                <label for="img" style="width:73%;margin-left:33px;">gambar</label>
+                <input type="file" name="img" style="width:41%;margin-left:34px;margin-right:18px;">
             </div>
             <div class="form-group" style="display:inline-block;">
               <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:-70px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
